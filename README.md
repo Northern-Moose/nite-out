@@ -10,9 +10,9 @@
 
 ## Legacy Team
 
- -__: [Sean Chen](https://github.com/seanchen1991)
- -__: [Etienne Tripier](https://github.com/etripier)
- -__: [Sam Puth](https://github.com/sputh)
+ - [Sean Chen](https://github.com/seanchen1991)
+ - [Etienne Tripier](https://github.com/etripier)
+ - [Sam Puth](https://github.com/sputh)
 
 ## Table of Contents
 
@@ -56,7 +56,9 @@ gulp
 ### Roadmap
 
 View the original project roadmap [here](https://github.com/NiteOut/nite-out/issues)
+
 View the legacy project roadmap [here](https://github.com/Northern-Moose/nite-out/issues)
+
 
 ## Contributing
 
