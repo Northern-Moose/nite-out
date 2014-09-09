@@ -12,13 +12,6 @@
 <body ng-app='nite-out'>
   <h1 ui-sref="main">NiteOut</h1>
   {{user}}
-  <div class="user-status" ng-controller="AuthController">
-    <needlogin ng-if="!loginStatus[0]"></needlogin>
-    <loggedin ng-if="loginStatus[0]"></loggedin>
-    <modal-dialog show="loginShown" action="getLoginData(userInfo)" template-url="app/auth/loginPage.html"></modal-dialog>
-    <modal-dialog show="signupShown" action="postSignupData(userInfo)" template-url="app/auth/signupPage.html"></modal-dialog>
-  </div>
-
   <div class="i-g">
     <div class="i-2" ng-controller="cartController">
       <cart class="shopping-cart"></cart>
@@ -26,6 +19,14 @@
     <div class="i-8" ui-view></div>
     <div class="i-2"></div>
   </div>
+  
+  <div class="user-status" ng-controller="AuthController">
+    <needlogin ng-if="!loginStatus[0]"></needlogin>
+    <loggedin ng-if="loginStatus[0]"></loggedin>
+    <modal-dialog show="loginShown" action="getLoginData(userInfo)" template-url="app/auth/loginPage.html"></modal-dialog>
+    <modal-dialog show="signupShown" action="postSignupData(userInfo)" template-url="app/auth/signupPage.html"></modal-dialog>
+  </div>
+
 
   <!-- distribution requirements -->
   <!-- <script src="dist/build.js"></script> -->
