@@ -4,11 +4,15 @@
 // all routing.
 
 var express = require('express');
-var mongoose = require('mongoose');
-var mongodb =require('../keys.js').mongodb;
+
+// Initialize the SQLite databases
+var sql =require('../keys.js').sqlite3;
+// var db = Bookshelf.initialize(sql);
 
 // Defer to the locally hosted mongodb if a process
 // variable is not defined.
+var mongoose = require('mongoose');
+var mongodb =require('../keys.js').mongodb;
 var dbURL = mongodb || 'mongodb://localhost/nite-out';
 mongoose.connect(dbURL);
 

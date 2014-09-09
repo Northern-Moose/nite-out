@@ -3,7 +3,7 @@
 // Defining the user model and attaching several methods
 // which handle password checking for existing users and
 // hashing when registering new users.
-var db = require('../config/db.js');
+var db = require('../config/sqlDbSchema.js');
 var bcrypt = require('bcrypt');
 
 var User = db.Model.extend({

@@ -9,12 +9,13 @@
     "bookshelf": "^0.7.7",
     "eventbrite": "^0.1.6",
     "express": "^4.8.6",
+    "jwt-simple": "~0.2.0",
     "knex": "^0.6.22",
     "mongoose": "^3.8.15",
     "mysql": "^2.4.3",
     "showtimes": "^0.3.0",
-    "yelp": "^0.1.1",
-    "jwt-simple": "~0.2.0"
+    "sqlite3": "^2.2.7",
+    "yelp": "^0.1.1"
   },
   "devDependencies": {
     "karma": "^0.12.23",
