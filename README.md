@@ -2,11 +2,17 @@
 
 > Tired of using multiple sites to plan your night? Nite-Out is your one-stop-shop for people looking to spend a night out on the town. 
 
-## Team
+## Original Team
 
   - __Product Owner__: Jimmy Jea (jimjea)
   - __Scrum Master__: Jarrod Ruhland (jangahroo)
   - __Development Team Members__: Issaq Al-Ahmed (iAl-Ahmed), Kim Marquardt (robotBones)
+
+## Legacy Team
+
+ -__: [Sean Chen](https://github.com/seanchen1991)
+ -__: [Etienne Tripier](https://github.com/etripier)
+ -__: [Sam Puth](https://github.com/sputh)
 
 ## Table of Contents
 
@@ -49,8 +55,8 @@ gulp
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/NiteOut/nite-out/issues)
-
+View the original project roadmap [here](https://github.com/NiteOut/nite-out/issues)
+View the legacy project roadmap [here](https://github.com/Northern-Moose/nite-out/issues)
 
 ## Contributing
 
