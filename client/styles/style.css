@@ -63,6 +63,10 @@ h1:hover {
   border: none;
 }
 
+.select-box:hover {
+  color: #F0A83A;
+}
+
 .title {
   font-size: 1.2em;
   color: #A9342C;

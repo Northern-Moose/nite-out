@@ -1,7 +1,7 @@
 <div id="container">
   <div class="search-bar">
-    <form ng-submit="conductSearch(input, type)" novalidate>
-      <input class="search-box" type="text" ng-model="input" required autofocus placeholder="Enter Zipcode"/>
+    <form ng-submit="conductSearch(input, type)" >
+      <input class="search-box" type="text" ng-model="input" required autofocus placeholder="Enter Zipcode" pattern="[0-9]*" maxlength="5" />
       <select
         class="select-box"
         ng-init="type = options[0]"
@@ -10,5 +10,5 @@
       </select>
     </form>
   </div>
-  <div id="main" ui-view></div>
 </div>
+  <div id="main" ui-view></div>

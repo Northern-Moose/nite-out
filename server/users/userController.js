@@ -1,6 +1,6 @@
 'use strict';
 
-// Import the databse and the user model and collection for use
+// Import the database and the user model and collection for use
 // in accessing the database for user login/signup.
 var User = require('./userModel.js');
 var jwt = require('jwt-simple');
