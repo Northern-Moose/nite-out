@@ -50,12 +50,13 @@ angular.module('nite-out', [
   };
 }])
 
-.directive('loggedin', ['Main', function(Main) {
+.directive('loggedin', ['Main', '$window', function(Main, $window) {
   return {
     restrict: 'EA',
     replace: true,
     templateUrl: 'app/auth/loggedin.tpl.html',
     link: function(scope) {
+      Main.user = $window.localStorage.getItem('user') || 'GUEST';
       scope.user = Main.user;
     }
   };

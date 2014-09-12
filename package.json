@@ -5,15 +5,24 @@
   "main": "index.js",
   "dependencies": {
     "bcrypt": "^0.8.0",
+    "bluebird": "^2.3.2",
     "body-parser": "^1.6.6",
     "bookshelf": "^0.7.7",
     "eventbrite": "^0.1.6",
+<<<<<<< HEAD
     "express": "^4.9.0",
+=======
+    "express": "^4.8.6",
+>>>>>>> 57ffc12e64ca3693642c128b555d5443f069ea01
     "jwt-simple": "~0.2.0",
     "knex": "^0.6.22",
     "mongoose": "^3.8.15",
     "mysql": "^2.4.3",
     "showtimes": "^0.3.0",
+<<<<<<< HEAD
+=======
+    "sqlite3": "^2.2.7",
+>>>>>>> 57ffc12e64ca3693642c128b555d5443f069ea01
     "yelp": "^0.1.1"
   },
   "devDependencies": {
