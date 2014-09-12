@@ -40,6 +40,18 @@ angular.module('nite-out.mapFactory', [])
       disableDefaultUI: true,
     },
 
+/*    polyfillCoordinates: {
+      // grab each cart item's coordinates
+    },
+
+    polyfillLine: new google.maps.Polyline({
+      path: polyfillCoordinates,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity, 1.0,
+      strokeWeight: 2
+    });*/
+
     events: {
       // When map is loaded then add reference of google map instance to the Mapper.gMap
       // FYI the google.map instance has more points of interface over the angular-google-map directive

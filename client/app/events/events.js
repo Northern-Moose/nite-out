@@ -41,14 +41,12 @@ angular.module('nite-out.events', ['ui.router'])
   // on every Mapper.init, fill our the current polyfill path
   // based on the coordinates of purchases in the cart
   $scope.select = function(event){
-    $scope.coordinates = [event.latitude, event.longitude];
-    console.log("events.js $scope.coordinates ", $scope.coordinates);
+    event.coordinates = [event.latitude, event.longitude];
     // doesn't do anything but center map around selection
     Mapper.select(event);
     // a boolean for modalSelection directive to show/hide
     event.selected = true;
   };
-
   $scope.bookIt = Main.addToCart;
 }]);
 
