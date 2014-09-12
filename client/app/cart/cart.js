@@ -2,6 +2,6 @@
 
 angular.module('nite-out.cart', [])
 
-.controller('cartController', ['$scope', '$state', 'Main', function($scope, $state, Main){
+.controller('cartController', ['$scope', '$state', 'Main', function($scope, $state, Main) {
   $scope.cart = Main.cart;
 }]);

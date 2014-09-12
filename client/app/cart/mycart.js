@@ -6,7 +6,7 @@ angular.module('nite-out.mycart', ['ui.router'])
   // Register our new state within the app.
   $stateProvider
     .state('main.mycart', {
-      url: 'mycart',
+      url: '/mycart',
       templateUrl: 'app/cart/mycart.html',
       controller: 'mycartController'
     });
@@ -15,8 +15,8 @@ angular.module('nite-out.mycart', ['ui.router'])
 .controller('mycartController', ['$scope', 'Main', function($scope, Main) {
   $scope.cart = Main.cart;
 
-  $scope.deleteItem = function(item){
+  $scope.deleteItem = function(item) {
     var removeItem = Main.cart.indexOf(item);
     Main.cart.splice(removeItem, 1);
-  }
+  };
 }]);

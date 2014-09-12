@@ -2,7 +2,7 @@
 
 angular.module('nite-out.mapFactory', [])
 
-.factory('Mapper',['$q', function($q){
+.factory('Mapper',['$q', function($q) {
 //////////////////////////////////////////////////////////////////////////////////////////
 //  map.html is set to render {{ object.name }} and {{ object.vicinity }} from Mapper.locations via controller.
 //  set Mapper.locations with an array by Mapper.setLocations() or just Mapper.locations = [{}...].

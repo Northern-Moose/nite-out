@@ -57,7 +57,6 @@ gulp.task('styles', function () {
 });
 
 gulp.task('watch', function() {
-
   gulp.watch(paths.scripts, ['lint']);
   gulp.watch(paths.html, ['html']);
   gulp.watch(paths.styles, ['styles']);

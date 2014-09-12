@@ -6,11 +6,13 @@
   </center>
 <div class="event" ng-repeat="event in events">
   <div ng-click="select(event)">
-    <a href="{{event.url}}"><img class="logo" src="assets/eventbrite.png" /></a>
-    <span class="title">{{event.id}}. {{event.title}}</span></br>
-    <span class="time">{{event.date | date:'medium'}}</span></br>
-    <div>{{event.venue}}</div>
-    <div>{{event.address}}</div>
+    <a href="{{ event.url }}"><img class="logo" src="assets/eventbrite.png" /></a>
+    <span class="title">{{ event.id }}. {{ event.title }}</span>
+    <br>
+    <span class="time">{{ event.date | date:'medium' }}</span>
+    <br>
+    <div>{{ event.venue }}</div>
+    <div>{{ event.address}}</div>
     <a class="home-button" ng-click="bookIt(event.title, event.data, 2)">Book Tickets</a>
   </div>
 </div>

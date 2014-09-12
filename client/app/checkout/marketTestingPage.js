@@ -5,10 +5,9 @@ angular.module('nite-out.marketTest', ['ui.router'])
     .state('markettest', {
       url: '/thankyou',
       templateUrl: 'app/checkout/marketTestingPage.html',
-      controller: 'MarketController'
+      controller: 'marketController'
     });
 }])
 
-.controller('MarketController',['$scope', function($scope) {
-
+.controller('marketController', ['$scope', function($scope) {
 }])
