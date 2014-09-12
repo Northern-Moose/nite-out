@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('nite-out.authServices', [])
+angular.module('nite-out.authServices', [
+  // 'ngstorage'
+  ])
 
 // Houses all the business logic for our token based application system
 .factory('AuthRequests', ['$http', '$window', 'Main', function($http, $window, Main) {
@@ -21,14 +23,19 @@ angular.module('nite-out.authServices', [])
 
     return $http({
       method: 'POST',
-      url: '/users',
+      url: '/users/signup',
       data: userData
     })
     // On successful response from the server, we want to set our current user,
     // save the token to localStorage and update our auth controller.
     .success(function(res) {
-      Main.user = res.user;
-      setToken(res.token);
+      $window.localStorage.token = res.token;
+      $window.localStorage.user = res.user;
+      $window.localStorage.zipcode = res.zipcode;
+      console.log('res.username: ', res.userData);
+      // $window.sessionStorage.user = res.userData.username;
+      Main.user = $window.localStorage.user || 'GUEST';
+      // setToken(res.token);
       resolved.push(true);
     });
   };
@@ -36,17 +43,23 @@ angular.module('nite-out.authServices', [])
   var userLogin = function(userData) {
     // Empty the array using native angular method to allow for overwriting
     angular.copy([], resolved);
-
-    return $http({
-      method: 'GET',
-      url: '/users',
-      params: userData
-    })
-    // Upon user verification, we set our current user, save the token
-    // and update our auth controller.
+    $http
+      .post('/users/login', userData)
+    // return $http({
+    //   method: 'POST',
+    //   url: '/users'
+    //   // data: userData
+    // })
+    // // Upon user verification, we set our current user, save the token
+    // // and update our auth controller.
     .success(function(res) {
-      Main.user = res.user;
-      setToken(res.token);
+      $window.localStorage.token = res.token;
+      $window.localStorage.user = res.user;
+      $window.localStorage.zipcode = res.zipcode;
+      console.log("token: ", $window.localStorage.token)
+      console.log("tokenPayload: ", $window.localStorage.user)
+      Main.user = $window.localStorage.user || 'GUEST';
+      // setToken(res.token);
       resolved.push(true);
     });
   };
@@ -55,6 +68,9 @@ angular.module('nite-out.authServices', [])
     // Empty the resolved array, delete the token from localStorage and update
     // auth controller with new resolved state.
     angular.copy([], resolved);
+    delete $window.sessionStorage.token;
+    delete $window.sessionStorage.user;
+
     $window.localStorage.removeItem('nite-out.user');
     resolved.push(false);
   };

@@ -26,8 +26,9 @@ module.exports = function(app, express) {
   // Wildcard is defined last in order to route to index
   app.use('/api/movies', movieRouter);
   app.use('/api/yelp', yelpRouter);
-  app.use('/users', userRouter);
+  app.use('/users/', userRouter);
   app.use('/api/events', eventRouter);
+  // app.post('/login', loginRouter);
 
   app.get('/*', function(req, res) {
     res.redirect('/');

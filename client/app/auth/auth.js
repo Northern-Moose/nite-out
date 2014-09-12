@@ -18,13 +18,11 @@ angular.module('nite-out.auth', ['ui.router'])
 }])
 
 .controller('AuthController', ['$scope', '$state', 'AuthRequests', function($scope, $state, AuthRequests) {
-  
+  console.log("AuthRequests: ", AuthRequests);
   // We handle which dialog to display here, based on which button is clicked.
   $scope.loginShown = false;
   $scope.signupShown = false;
   
-  // For login, move to use ng-morph
-
   // Login button clicked, display the login dialog
   $scope.toggleLogin = function() {
     $scope.loginShown = !$scope.loginShown;
@@ -45,6 +43,8 @@ angular.module('nite-out.auth', ['ui.router'])
   };
 
   $scope.getLoginData = function(data) {
+    console.log("AuthRequests: ", AuthRequests);
+    // console.log("data: ", data);
     AuthRequests.userLogin(data);
   };
 
