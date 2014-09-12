@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
   <title>NiteOut</title>
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Montserrat+Alternates' rel='stylesheet' type='text/css'>
+  <!-- CSS and fonts -->
+  <link rel="stylesheet" type="text/css" href="styles/styles.css">
+  <link rel="stylesheet" type="text/css" href="styles/icecream-grid.css">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto:400,700">
+  <!-- Google maps API -->
   <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
-  <link rel="stylesheet" type="text/css" href="styles/style.css" />
-  <link rel="stylesheet" type="text/css" href="styles/icecream-grid.css" />
 </head>
-<body ng-app='nite-out'>
-  <h1 ui-sref="main">NiteOut</h1>
-  {{user}}
-  <div class="user-status" ng-controller="AuthController">
-    <needlogin ng-if="!loginStatus[0]"></needlogin>
-    <loggedin ng-if="loginStatus[0]"></loggedin>
-    <modal-dialog show="loginShown" action="getLoginData(userInfo)" template-url="app/auth/loginPage.html"></modal-dialog>
-    <modal-dialog show="signupShown" action="postSignupData(userInfo)" template-url="app/auth/signupPage.html"></modal-dialog>
-  </div>
-
-  <div class="i-g">
-    <div class="i-2" ng-controller="cartController">
-      <cart class="shopping-cart"></cart>
+<body ng-app="nite-out">
+  <div id="background">
+    <div id="status">
+      <span id="title">NiteOut</span>
+      <span id="login" ng-controller="AuthController">
+        <needlogin ng-if="!loginStatus"></needlogin>
+        <loggedin ng-if="!!loginStatus"></loggedin>
+        <modal-dialog show="loginShown" action="getLoginData(userInfo)" template-url="app/auth/loginPage.html"></modal-dialog>
+        <modal-dialog show="signupShown" action="postSignupData(userInfo)" template-url="app/auth/signupPage.html"></modal-dialog>
+      </span>
     </div>
-    <div class="i-8" ui-view></div>
-    <div class="i-2"></div>
+    <div id="bigContainer">
+      <div id="cart" ng-controller="cartController">
+        <cart></cart>
+      </div>
+      <div id="bigMain" ui-view></div>
+    </div>
   </div>
-
-  <!-- distribution requirements -->
-  <!-- <script src="dist/build.js"></script> -->
-
-  <!-- development requirements -->
+  <!-- Client-side requirements -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/lodash/dist/lodash.min.js"></script>
-  <script src="bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
+  <script src="bower_components/angular-google-maps/dist/angular-google-maps.js"></script>
+  <!-- Angular modules -->
   <script src="app/auth/auth.js"></script>
   <script src="app/auth/services.js"></script>
   <script src="app/checkout/checkout.js"></script>

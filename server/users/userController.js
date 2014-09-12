@@ -3,18 +3,35 @@
 // Import the databse and the user model and collection for use
 // in accessing the database for user login/signup.
 var User = require('./userModel.js');
+var Users = require('./users.js');
 var jwt = require('jwt-simple');
+var app = require('../server.js');
+var express = require('express');
+
+/************************************************************/
+// Token Support 94103
+/************************************************************/
+// var makeToken = function(user, username) {
+//   var payload = {
+//     user: username
+//   };
+//   var token = jwt.encode(payload, 'secret');
+//   res.json({token: token, zipcode: user.get(zipcode)});
+//   console.log("made token!");
+// };
 
 // Here we hold all the methods that handle user login and signup.
 module.exports = {
 
   // Method for handling requests for existing users. (GET)
   loginUser: function(req, res, next) {
-    var email = req.query.email;
-    var password = req.query.password;
+    var username = req.body.username;
+    var password = req.body.password;
+    console.log('username: ', username);
+    console.log('password: ', password);
 
     // Query user against the database to see if it is a registered user
-    new User({ email: email })
+    new User({ username: username })
       .fetch()
       .then(function(user) {
         if (!user) {
@@ -27,8 +44,18 @@ module.exports = {
             if (match) {
               // The password is a match, send back appropriate header
               // to client application, tokening will be handle by client.
-              var token = jwt.encode(user, 'secret');
-              res.json({token: token, user: user.get('first_name')});
+              // CHANGE: send back username and zipcode for default loading
+              // makeToken(user, username);
+              var payload = {
+                user: username
+              };
+              var token = jwt.encode(payload, 'secret');
+              console.log("token: ", token)
+              res.json({
+                token: token, 
+                user: username, 
+                zipcode: user.get('zipcode')
+              });
             } else {
               // Unauthorized request status code sent back to client.
               next(new Error('Bad password'));
@@ -40,6 +67,7 @@ module.exports = {
 
   // Method for handling requests to signup new users. (POST)
   signupUser: function(req, res, next) {
+    var username = req.body.username;
     var email = req.body.email;
     var password = req.body.password;
     var first = req.body.first || null;
@@ -48,33 +76,37 @@ module.exports = {
     // Create a new database model for the user, email and password are
     // currently the only required fields. UserIDs are automatically
     // assigned by MySQL database.
-    new User({ email: email })
-      .fetch()
-      .then(function(user) {
-        // After querying the database to see if the user already exists
-        // we can safely create and save a new instance if nothing is
-        // returned under that users email address.
-        if (!user) {
-          var newUser = new User({
-            email: email,
-            password: password,
-            first_name: first,
-            last_name: last
+
+    new User({ username: username })
+    .fetch()
+    .then(function(user) {
+      if (!user) {
+        Users.create({
+          username: username,
+          email: email,
+          password: password,
+          first: first,
+          last: last,
+          zipcode: undefined
+        }).then(function(user) {
+          // makeToken(user, username);
+          var payload = {
+            user: username
+          };
+          var token = jwt.encode(payload, 'secret');
+          res.json({
+            token: token,
+            user: username,
+            zipcode: user.get('zipcode') || 94103
           });
-          newUser.save()
-            .then(function(newUser) {
-              // Add the user to the collection of users.
-              // Send created response to trigger client application to
-              // issue an authorization token.
-              var token = jwt.encode(user, 'secret');
-              res.json({token: token, user: newUser.get('first_name')});
-            });
-        } else {
-          // Send bad request header and inform the client that the user
-          // already exists.
-          next('Account already exists');
-        }
-      });
+          console.log("made token!");
+          console.log("user: ", user);
+        });
+      } else {
+        next(new Error('Account already exists'));
+        // res.redirect('/');
+      }
+    });
   },
 
   // Method for handling requests to edit user information. (PUT)

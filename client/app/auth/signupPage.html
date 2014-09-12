@@ -6,6 +6,7 @@
       <h3>Signup</h3>
       <form ng-submit="action({userInfo: userInfo}); hideModal()">
         <div>Email:</br><input type="email" ng-model="userInfo.email" required></div>
+        <div>Username:</br><input type="username" ng-model="userInfo.username" required></div>
         <div>Password:</br><input type="password" ng-model="userInfo.password" required></div>
         <div>First Name:</br><input type="text" ng-model="userInfo.first" required></div>
         <div>Last Name:</br><input type="text" ng-model="userInfo.last" required></div>

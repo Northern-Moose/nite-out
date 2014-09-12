@@ -17,14 +17,12 @@ angular.module('nite-out.auth', ['ui.router'])
     });
 }])
 
-.controller('AuthController', ['$scope', '$state', 'AuthRequests', function($scope, $state, AuthRequests) {
-  
+.controller('AuthController', ['$scope', '$state', 'AuthRequests', '$window', 'Main', function($scope, $state, AuthRequests, $window, Main) {
+  console.log("AuthRequests: ", AuthRequests);
   // We handle which dialog to display here, based on which button is clicked.
   $scope.loginShown = false;
   $scope.signupShown = false;
   
-  // For login, move to use ng-morph
-
   // Login button clicked, display the login dialog
   $scope.toggleLogin = function() {
     $scope.loginShown = !$scope.loginShown;
@@ -38,18 +36,30 @@ angular.module('nite-out.auth', ['ui.router'])
   // Here we handle passing data to the server, all business logic is handled in
   // AuthRequests service.
   $scope.userInfo = {};
-  $scope.loginStatus = AuthRequests.resolved;
+  $window.localStorage.getItem('token') ? $scope.loginStatus = true : $scope.loginStatus = false;
+
+  // $scope.loginStatus = $window.localStorage.getItem('token');
+  console.log("if: ", ($scope.loginStatus))
 
   $scope.postSignupData = function(data) {
     AuthRequests.signup(data);
+    $scope.loginStatus = $window.localStorage.getItem('token');
   };
 
   $scope.getLoginData = function(data) {
+    console.log("data: ", data);
+    // console.log("data: ", data);
     AuthRequests.userLogin(data);
+    $window.localStorage.getItem('token') ? $scope.loginStatus = true : $scope.loginStatus = false;
+    $scope.loginStatus = true;
+    Main.user = data.username;
+    // Main.user = $window.localStorage.getItem('user');
   };
 
   $scope.signout = function() {
     AuthRequests.signout();
+    console.log('deleted: ', $window.localStorage.getItem('token'))
+    $window.localStorage.getItem('token') ? $scope.loginStatus = true : $scope.loginStatus = false;
   };
 }]);
 
