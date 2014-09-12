@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nite-out.auth', ['ui.router'])
+angular.module('nite-out.auth', ['ui.router'/*, 'ngMorph'*/])
 
 // Define our states for ui.router
 .config(['$stateProvider', function($stateProvider) {
@@ -17,8 +17,47 @@ angular.module('nite-out.auth', ['ui.router'])
     });
 }])
 
+<<<<<<< HEAD
+/////////////////////////////////////////////////
+// Controllers for login and signup using ngMorph
+/////////////////////////////////////////////////
+
+/*.controller('LoginController', function($scope) {
+  $scope.login = {
+    trigger: 'click',
+    closeEl: '.close-x',
+    modal: {
+      templateUrl: 'app/auth/loginPage.html',
+      position: {
+        top: 50%,
+        left: 50%
+      },
+      fade: false
+    }
+  }
+});
+
+.controller('SignupController', function($scope) {
+  $scope.signup = {
+    trigger: 'click',
+    closeEl: '.close-x',
+    modal: {
+      templateUrl: 'app/auth/signupPage.html',
+      position: {
+        top: 50%,
+        left: 50%
+      },
+      fade: false
+    }
+  }
+});*/
+
+.controller('AuthController', ['$scope', '$state', 'AuthRequests', function($scope, $state, AuthRequests) {
+  
+=======
 .controller('AuthController', ['$scope', '$state', 'AuthRequests', '$window', 'Main', function($scope, $state, AuthRequests, $window, Main) {
   console.log("AuthRequests: ", AuthRequests);
+>>>>>>> 57ffc12e64ca3693642c128b555d5443f069ea01
   // We handle which dialog to display here, based on which button is clicked.
   $scope.loginShown = false;
   $scope.signupShown = false;

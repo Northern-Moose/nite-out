@@ -38,7 +38,7 @@ angular.module('nite-out.main', [
   $scope.conductSearch = function(search, choice) {
 
     // Handle redirecting based on appropriate search
-    Search.current = search;
+    Search.current = search;    // current is the entered zipcode
     Search.type = choice.value;
     $scope.input = '';
     // All events are handled in one page, type is only utilized in order to

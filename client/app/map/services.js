@@ -2,7 +2,7 @@
 
 angular.module('nite-out.mapFactory', [])
 
-.factory('Mapper',['$q', function($q){
+.factory('Mapper',['$q', 'Main', function($q, Main){
 //////////////////////////////////////////////////////////////////////////////////////////
 //  map.html is set to render {{ object.name }} and {{ object.vicinity }} from Mapper.locations via controller.
 //  set Mapper.locations with an array by Mapper.setLocations() or just Mapper.locations = [{}...].
@@ -44,11 +44,40 @@ angular.module('nite-out.mapFactory', [])
       // When map is loaded then add reference of google map instance to the Mapper.gMap
       // FYI the google.map instance has more points of interface over the angular-google-map directive
       tilesloaded: function (mapInstance) {
+        var coordinates = [];
+        Main.cart.forEach(function(object) {
+          coordinates.push(new google.maps.LatLng(object.coordinates[0], object.coordinates[1]));
+        });
+
         if(!gMap){
           gMap = mapInstance;
           pointOfInterest = gMap.getCenter();
+
+          var path = new google.maps.Polyline({
+            path: coordinates,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+          });
+          path.setMap(gMap);
         }
-      }
+      },
+/*      polyfillLine: function() {
+        var coordinates = [];
+        Main.cart.coordinates.forEach(function(coordinate) {
+          coordinates.push(new google.maps.LatLng(coordinate[0], coordinate[1]));
+          console.log("coordinates ", coordinates);
+        })
+        var path = new google.maps.Polyline({
+          path: coordinates,
+          geodesic: true,
+          strokeColor: '#FF0000',
+          strokeOpacity: 1.0,
+          strokeWeight: 2
+        });
+        path.setMap(gMap);
+      }*/
     }
   };
 
@@ -79,6 +108,7 @@ angular.module('nite-out.mapFactory', [])
 
   var setCenter = function(geolocation){
     if(gMap){
+      console.log("map.services.setCenter.geolocation ", geolocation);
       gMap.setCenter(geolocation);
     }
   };

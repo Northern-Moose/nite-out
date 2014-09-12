@@ -11,6 +11,6 @@
     <span class="time">{{event.date | date:'medium'}}</span></br>
     <div>{{event.venue}}</div>
     <div>{{event.address}}</div>
-    <a class="home-button" ng-click="bookIt(event.title, event.data, 2)">Book Tickets</a>
+    <a class="home-button" ng-click="bookIt(event.title, event.data, 2, event.coordinates)">Book Tickets</a>
   </div>
 </div>

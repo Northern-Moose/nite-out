@@ -1,6 +1,6 @@
 'use strict';
 
-// Import the databse and the user model and collection for use
+// Import the database and the user model and collection for use
 // in accessing the database for user login/signup.
 var User = require('./userModel.js');
 var Users = require('./users.js');
@@ -99,6 +99,23 @@ module.exports = {
             user: username,
             zipcode: user.get('zipcode') || 94103
           });
+<<<<<<< HEAD
+          newUser.save()
+            .then(function(newUser) {
+              // console.log("user", newUser)
+              // Add the user to the collection of users.
+              // Send created response to trigger client application to
+              // issue an authorization token.
+              var token = jwt.encode(user, 'secret');
+              res.json({token: token, user: newUser.get('first_name')});
+            });
+        } else {
+          // Send bad request header and inform the client that the user
+          // already exists.
+          next('Account already exists');
+        }
+      });
+=======
           console.log("made token!");
           console.log("user: ", user);
         });
@@ -107,6 +124,7 @@ module.exports = {
         // res.redirect('/');
       }
     });
+>>>>>>> 57ffc12e64ca3693642c128b555d5443f069ea01
   },
 
   // Method for handling requests to edit user information. (PUT)

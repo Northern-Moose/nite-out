@@ -25,6 +25,10 @@
   "dependencies": {
     "angular-ui-router": "~0.2.11",
     "angular-google-maps": "~1.2.1",
+<<<<<<< HEAD
+    "angular-morph": "*"
+=======
     "ngstorage": "~0.3.0"
+>>>>>>> 57ffc12e64ca3693642c128b555d5443f069ea01
   }
 }

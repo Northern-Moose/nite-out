@@ -2,7 +2,7 @@
 
 angular.module('nite-out.events', ['ui.router'])
 
-// Configure out state
+// Configure our state
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider
     .state('main.events', {
@@ -34,19 +34,19 @@ angular.module('nite-out.events', ['ui.router'])
   // Fetch our events to update $scope.events
   // Object decorator preps events to initialize google-map markers directive
   $scope.events = Mapper.makeMarkerFriendlyVersionsOf(events);
-
   // let $scope.map be the initial interface object for the google-map directive
   // Mapper.init is the default object for setup
   // for changing options go to: https://angular-ui.github.io/angular-google-maps/#!/api
   $scope.map = Mapper.init;
-
+  // on every Mapper.init, fill our the current polyfill path
+  // based on the coordinates of purchases in the cart
   $scope.select = function(event){
+    event.coordinates = [event.latitude, event.longitude];
     // doesn't do anything but center map around selection
     Mapper.select(event);
     // a boolean for modalSelection directive to show/hide
     event.selected = true;
   };
-
   $scope.bookIt = Main.addToCart;
 }]);
 
