@@ -49,6 +49,7 @@ angular.module('nite-out.restaurants', ['ui.router'])
 
   $scope.setCenter = function(restaurant){
     // Async Geocoder API call
+    $scope.coordinates = [restaurant.coords.lat, restaurant.coords.lng];
     Mapper.setCenter(restaurant.coords);
   };
 

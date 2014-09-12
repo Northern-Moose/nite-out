@@ -23,12 +23,14 @@ angular.module('nite-out.mainServices', [])
   // Extracting our addToCart function requires that all modules present 
   // their data to the cart in a uniform way and allows new modules to be added
   // without the need to modify the existing cart or client-side code.
-  var addToCart = function(name, time, numTickets) {
+  var addToCart = function(name, time, numTickets, coordinates) {
     cart.push({
       event: name,
       time: time,
-      numTickets: numTickets
+      numTickets: numTickets,
+      coordinates: coordinates
     });
+    console.log("Cart ", cart);
     $state.go('main.shopping');
   };
 

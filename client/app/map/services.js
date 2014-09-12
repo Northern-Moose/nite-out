@@ -79,6 +79,7 @@ angular.module('nite-out.mapFactory', [])
 
   var setCenter = function(geolocation){
     if(gMap){
+      console.log("map.services.setCenter.geolocation ", geolocation);
       gMap.setCenter(geolocation);
     }
   };

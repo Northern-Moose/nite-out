@@ -14,7 +14,7 @@ angular.module('nite-out.showtimes', ['ui.router'])
 .controller('showtimesController', ['$scope', '$state', 'Movies', 'Main', function($scope, $state, Movies, Main){
   
   $scope.movies = Movies.selected.movies; 
-
+  $scope.coordinates = [Movies.selected.coords.lat, Movies.selected.coords.lng];
   $scope.buyTickets = Main.addToCart;
 
 }]);
