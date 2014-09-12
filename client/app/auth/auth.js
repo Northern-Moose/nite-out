@@ -36,21 +36,25 @@ angular.module('nite-out.auth', ['ui.router'])
   // Here we handle passing data to the server, all business logic is handled in
   // AuthRequests service.
   $scope.userInfo = {};
-  $window.localStorage.getItem('token') ? $scope.loginStatus = true : $scope.loginStatus = false;
+  function login ()  {
+    $window.localStorage.getItem('token') ? $scope.loginStatus = true : $scope.loginStatus = false;
+  }
 
   // $scope.loginStatus = $window.localStorage.getItem('token');
-  console.log("if: ", ($scope.loginStatus))
+  // console.log("if: ", ($scope.loginStatus))
 
   $scope.postSignupData = function(data) {
     AuthRequests.signup(data);
-    $scope.loginStatus = $window.localStorage.getItem('token');
+    login();
+    // $scope.loginStatus = $window.localStorage.getItem('token');
   };
 
   $scope.getLoginData = function(data) {
     console.log("data: ", data);
     // console.log("data: ", data);
     AuthRequests.userLogin(data);
-    $window.localStorage.getItem('token') ? $scope.loginStatus = true : $scope.loginStatus = false;
+    login();
+    // $window.localStorage.getItem('token') ? $scope.loginStatus = true : $scope.loginStatus = false;
     $scope.loginStatus = true;
     Main.user = data.username;
     // Main.user = $window.localStorage.getItem('user');
