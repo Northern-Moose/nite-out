@@ -39,6 +39,7 @@ angular.module('nite-out.auth', ['ui.router'])
   function login ()  {
     $window.localStorage.getItem('token') ? $scope.loginStatus = true : $scope.loginStatus = false;
   }
+  login();
 
   // $scope.loginStatus = $window.localStorage.getItem('token');
   // console.log("if: ", ($scope.loginStatus))
