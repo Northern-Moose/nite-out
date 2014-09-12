@@ -23,7 +23,6 @@ module.exports = {
       // Handle errors on server, log the error on server and
       // return error code client
       if (error) {
-        console.error(error);
         next('An error occured');
       } 
       if (result) {
@@ -39,7 +38,6 @@ module.exports = {
         var shows = showtimes(zipCode, {});
         shows.getTheaters(function(error, theatres) {
           if (error) {
-            console.error(error);
             next('No matching results');
           }
           Movies.create({zipcode: zipCode, results: theatres});

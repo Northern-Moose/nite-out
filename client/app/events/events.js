@@ -2,7 +2,7 @@
 
 angular.module('nite-out.events', ['ui.router'])
 
-// Configure out state
+// Configure our state
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider
     .state('main.events', {

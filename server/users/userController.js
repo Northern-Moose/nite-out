@@ -63,6 +63,7 @@ module.exports = {
           });
           newUser.save()
             .then(function(newUser) {
+              // console.log("user", newUser)
               // Add the user to the collection of users.
               // Send created response to trigger client application to
               // issue an authorization token.
